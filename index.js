@@ -1,6 +1,7 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
+import routes from "./route.js"; // Assuming route.js is in the same directory
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -15,6 +16,8 @@ const io = new Server(server, {
 
 app.use(express.json());
 var clients = {};
+
+app.use("/route", routes);
 
 io.on("connection", (socket) => {
   console.log(`✅ New client connected: ${socket.id}`);
