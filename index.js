@@ -18,6 +18,7 @@ app.use(express.json());
 var clients = {};
 
 app.use("/route", routes);
+app.use("/uploads", express.static("uploads")); // Serve static files from the uploads directory
 
 io.on("connection", (socket) => {
   console.log(`✅ New client connected: ${socket.id}`);
